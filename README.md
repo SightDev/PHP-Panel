@@ -1,4 +1,4 @@
-##Enhanced PHP Panel with Advanced Loader Management
+# Enhanced PHP Panel with Advanced Loader Management
 
 This project builds upon a pre-made PHP panel, introducing a more user-friendly and efficient API, along with several key improvements for better administration and usability.
 🔹 Features & Improvements
@@ -9,7 +9,7 @@ This project builds upon a pre-made PHP panel, introducing a more user-friendly 
     Color Scheme Update – A refreshed UI with an improved color scheme for better visual clarity.
     General Enhancements – Various optimizations and refinements scattered throughout the panel.
 
-🔒 Access Control
+# 🔒 Access Control
 
     The loader management section is restricted to admin users only to ensure security and control.
 
