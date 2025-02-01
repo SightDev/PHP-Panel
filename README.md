@@ -1,4 +1,4 @@
-## STILL A W.I.P
+## STILL A W.I.P, Kind of a mess as of now.
 # Enhanced PHP Panel with Advanced Loader Management
 
 
