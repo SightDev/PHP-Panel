@@ -13,6 +13,7 @@ This project builds upon a pre-made PHP [panel](https://github.com/znixbtw/php-p
 
 # 🔒 Access Control
 
-    The loader management section is restricted to admin users only to ensure security and control.
+    The loader management section is restricted to admin users only to ensure security and control. 
+    When using the api use aapi.php instead of api.php.
 
 This project enhances the original panel’s functionality while maintaining ease of use and accessibility for administrators. 🚀
