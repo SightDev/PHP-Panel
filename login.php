@@ -1,3 +1,16 @@
+<?php
+include './app/require.php';
+include './app/controllers/authController.php';
+
+Util::isUser();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    $response = (new authController())->login($_POST);
+}
+
+Util::head('Login');
+Util::navbar();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +24,11 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <style>
-        /* Combined CSS - This is the KEY part */
         body {
             background-color: #1B1B1D;
             color: #bdc3c7;
             font-family: 'Inconsolata', monospace;
-            overflow: hidden; /* Prevent scrollbars for the centered layout */
+            overflow: hidden;
         }
         .center-container {
             display: flex;
@@ -38,13 +50,13 @@
             background-color: #1B1B1D;
             border: 2px solid #70a1ff;
             box-shadow: 0px 0px 45px 4px rgba(0,0,0,0.27);
-            width: 45%; /* Match the width of the login section */
+            width: 45%;
         }
         .card-body {
-            padding: 20px; /* Adjust padding as needed */
+            padding: 20px;
         }
         .card-title {
-            color: #2766db; /* Match the title color */
+            color: #2766db;
             margin-bottom: 20px;
         }
         .form-control {
@@ -53,8 +65,8 @@
             border: none;
             text-align: center;
             margin-bottom: 10px;
-            width: 100%; /* Input fields full width */
-            box-sizing: border-box; /* Include padding/border in width */
+            width: 100%;
+            box-sizing: border-box;
         }
         .btn-outline-primary {
             background-color: transparent;
@@ -71,29 +83,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Make sure the particles stay in the background */
+            z-index: -1;
         }
     </style>
 </head>
 <body style="background-color:#1B1B1D; color: #bdc3c7; font-family: 'Inconsolata', monospace;">
-    <div id="pg"></div>  <div class="center-container">
+    <div id="pg"></div>
+    <div class="center-container">
         <div class="row-content">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">Login</h4>
-                    <?php 
-                        include './app/require.php';
-                        include './app/controllers/authController.php';
-
-                        Util::isUser();
-
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
-                            $response = (new authController())->login($_POST);
-                        }
-
-                        Util::head('Login');
-                        Util::navbar(); 
-                      ?>
+                    <?php if (isset($response)) : ?>
+                        <div class="alert alert-primary" role="alert">
+                            <?= Util::display($response); ?>
+                        </div>
+                    <?php endif; ?>
                     <form method="POST">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-sm" placeholder="Username" name="username" required>
@@ -109,8 +114,6 @@
             </div>
         </div>
     </div>
-
-
     <script src="js/jquery.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/pace.min.js"></script>
@@ -125,86 +128,86 @@
 
         function changeTitle() {
             document.title = titles[currentTitleIndex];
-            currentTitleIndex = (currentTitleIndex + 1) % titles.length; // Cycle through the array
+            currentTitleIndex = (currentTitleIndex + 1) % titles.length;
         }
 
-        setInterval(changeTitle, 1000); // Change title every 1000 milliseconds (1 second)
+        setInterval(changeTitle, 1000);
 
         particlesJS('pg', {
-          particles: {
-            number: {
-              value: 80,
-              density: {
-                enable: true,
-                value_area: 800
-              }
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#FACC91"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#70a1ff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
             },
-            color: {
-              value: "#FACC91"
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    }
+                }
             },
-            shape: {
-              type: "circle",
-              stroke: {
-                width: 0,
-                color: "#000000"
-              }
-            },
-            opacity: {
-              value: 0.5,
-              random: true,
-              anim: {
-                enable: true,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-              }
-            },
-            size: {
-              value: 3,
-              random: true,
-              anim: {
-                enable: true,
-                speed: 40,
-                size_min: 0.1,
-                sync: false
-              }
-            },
-            line_linked: {
-              enable: true,
-              distance: 150,
-              color: "#70a1ff",
-              opacity: 0.4,
-              width: 1
-            },
-            move: {
-              enable: true,
-              speed: 2,
-              direction: "none",
-              random: false,
-              straight: false,
-              out_mode: "out",
-              bounce: false,
-              attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200
-              }
-            }
-          },
-          interactivity: {
-            detect_on: "canvas",
-            events: {
-              onhover: {
-                enable: true,
-                mode: "repulse"
-              },
-              onclick: {
-                enable: true,
-                mode: "push"
-              }
-            }
-          },
-          retina_detect: true
+            retina_detect: true
         });
     </script>
 </body>
