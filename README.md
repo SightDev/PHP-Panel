@@ -25,5 +25,7 @@ This project enhances the original panel’s functionality while maintaining eas
 <img src="https://camo.githubusercontent.com/f59b9bc008b9c10dd52467bb899ebadf9bd0564cd5bcf21452997ea2a361943f/68747470733a2f2f692e696d6775722e636f6d2f56423269616c382e706e67"/>
 
 ## Pros and cons of this approach
+
 Pros: User isn't interacting with the DB directly, MVC Pattern Indication, and Defined Data Flow
+
 Cons: Scalability and Performance Considerations (runs perfectly fine on most low grade servers), Single Point of Failure (Potentially), No External System Integration.
