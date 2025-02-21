@@ -22,10 +22,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= (BASE_PATH); ?>profile.php">Profile</a>
                     </li>
+                    <!--
                     <li class="nav-item">
-                        <!-- <a class="nav-link" href="<?= (BASE_PATH); ?>gotoforum.php">Forums</a> -->
-                        <a class="nav-link" href="https://slack.kesug.com/forums/">Forums</a>
-                    </li>
+                       <a class="nav-link" href="https://slack.kesug.com/forums/">Forums</a> 
+                    </li> <!--We ain't got no forum at the moment-->
+                    
+                         <!--Do a check here if the user has a sub or not, they shouldn't be able to not have a sub and see this-->
+                             <li class="nav-item">
+                                <a class="nav-link" href="<?= (BASE_PATH); ?>Luas.php">Scripts</a>
+                             </li>
+                        <!--/////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
                     <!-- Check if admin -->
                     <?php if (Session::get('admin')) : ?>
