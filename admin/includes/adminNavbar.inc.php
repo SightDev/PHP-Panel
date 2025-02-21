@@ -9,7 +9,8 @@
             <a href='<?= (BASE_PATH); ?>admin/invites.php' class="btn btn-outline-primary btn-sm">Invite codes</a>
             <a href='<?= (BASE_PATH); ?>admin/sub.php' class="btn btn-outline-primary btn-sm">Sub codes</a>
             <a href='<?= (BASE_PATH); ?>admin/cheat.php' class="btn btn-outline-primary btn-sm">cheat</a>
-            <a href='<?= (BASE_PATH); ?>../PanelTest/LoaderPanel.php'class="btn  btn-outline-primary btn-sm">Loader</a>
+            <a href='<?= (BASE_PATH); ?>../panel/LoaderPanel.php'class="btn  btn-outline-primary btn-sm">Loader</a>
+            <a href='<?= (BASE_PATH); ?>../panel/Luas.php'class="btn  btn-outline-primary btn-sm">Luas</a>
         </div>
     </div>
 <?php endif; ?>
