@@ -1,6 +1,7 @@
 ## STILL A W.I.P, Kind of a mess as of now.
 # Enhanced PHP Panel with Advanced Loader Management
 
+Contributions welcome! 💻 Feel free to submit pull requests.
 
 This project builds upon a pre-made PHP [panel](https://github.com/znixbtw/php-panel-v2), introducing a more user-friendly and efficient API, along with several key improvements for better administration and usability.
 🔹 Features & Improvements
