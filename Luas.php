@@ -36,7 +36,7 @@ Util::navbar();
             background-color: #1B1B1D;
             color: #bdc3c7;
             font-family: 'Inconsolata', monospace;
-            overflow: hidden; 
+            
         }
         .center-container {
             display: flex;
@@ -63,7 +63,8 @@ Util::navbar();
             text-align: center;
         }
         .card-body {
-            padding: 20px; 
+ padding: 20px; 
+        }
         }
         .card-title {
             color: #2766db; 
@@ -149,70 +150,52 @@ Util::navbar();
     opacity: 1;
     transform: translateY(0);
 }
-
     </style>
 </head>
 <body style="background-color:#1B1B1D; color: #bdc3c7; font-family: 'Inconsolata', monospace;">
     <div id="pg"></div>
     <div class="center-container">
         <div class="row-content">
-
+            
             <div class="column">
                 <div class="card">
                     <div class="card-body">
                         <div class="alert alert-primary" role="alert">
-                            Welcome back,
+                            welcome back,
                             <a href="<?= BASE_PATH; ?>profile.php"><b><?= Util::display($user['username']) ?></b></a>.
                         </div>
                     </div>
+                
                 </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="h5 border-bottom border-secondary pb-1"><i class="fas fa-chart-area"></i> Statistics</div>
-                        <div class="row text-muted">
-                            <div class="col-12 clearfix">
-                                Users: <p class="float-right mb-0"><?= Util::display($userCount); ?></p>
-                            </div>
-                            <div class="col-12 clearfix">
-                                Latest User: <p class="float-right mb-0"><?= Util::display($newestUser); ?></p>
-                            </div>
-                        </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="alert alert-primary" role="alert">
+                        Buy a subscription to get access to this part of the panel.
                     </div>
                 </div>
+            </div>
+                <?php if ($hasSub) : ?>
+<div class="card">
+    <div class="card-body">
+        <b><h5 class="card-title">Info / F.A.Q</h5> </b>
+        <h7><b>Where are my luas supposed to go at?</b></h7>
+        <h6><b>Luas go in your %temp% directory</b></h6>
+        <br>
+        <h7><b>Which modules are detected?</b></h7>
+        <h6><b>None, if any module causes bans, it will be removed.</b></h6>
+        <br>
+        <h7><b>Which OS's are supported?</b></h7>
+        <h6><b>Windows 10/11 22h2 and on</b></h6>
+        <br>
+        <h7><b>I encountered an error. How do I report it?</b></h7>
+        <h6><b>Make a ticket on the forum or discord</b></h6>
+        <br>
+        <h7><b>Why do I see 'Kernel Mode Driver Loading'?</b></h7>
+        <h6><b>Slack has a kernal mode driver to stay undetected from miniscule anti-cheats (V.A.C)</b></h6>
 
-                <div class="card">
-                    <div class="card-body">
-                        <div class="h5 border-bottom border-secondary pb-1"><i class="fas fa-exclamation-circle"></i> Status</div>
-                        <div class="row text-muted">
-                            <div class="col-12 clearfix">
-                                Status: <p class="float-right mb-0"><?= Util::display($cheatData->status); ?></p>
-                            </div>
-                            <div class="col-12 clearfix">
-                                Version: <p class="float-right mb-0"><?= Util::display($cheatData->version); ?></p>
-                            </div>
-                            <?php if (Util::display($cheatData->status) == 'Detected') : ?>
-                                <?php if ($hasSub) : ?>
-                                    <div class="col-12 text-center pt-1">
-                                        <div class="border-top border-secondary pt-1">
-                                            Loader is down for maintenance, sorry for the inconvenience.
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                            <?php endif; ?>
+    </div>
+</div>
 
-                            <?php if (Util::display($cheatData->status) == 'Undetected') : ?>
-                                <?php if ($hasSub) : ?>
-                                    <div class="col-12 text-center pt-1">
-                                        <div class="border-top border-secondary pt-1">
-                                            <a href="/download.php">Download Loader</a>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="column">
@@ -229,48 +212,68 @@ Util::navbar();
         moveToActiveLua(luaName, buttonElement);
     }
 
-    function moveToActiveLua(luaName, buttonElement) {
-        let activeLuaSection = document.getElementById("activeLuas");
+   function moveToActiveLua(luaName, buttonElement) {
+    let activeLuaSection = document.getElementById("activeLuas");
 
-        // Check if already added
-        let existingItems = activeLuaSection.getElementsByTagName("div");
-        for (let i = 0; i < existingItems.length; i++) {
-            if (existingItems[i].querySelector("p").innerText === luaName) {
-                return; 
-            }
+    // Check if already added
+    let existingItems = activeLuaSection.getElementsByTagName("div");
+    for (let i = 0; i < existingItems.length; i++) {
+        if (existingItems[i].querySelector("p").innerText === luaName) {
+            return; 
         }
-
-        // Create new container for active LUA
-        let luaContainer = document.createElement("div");
-        luaContainer.style.display = "flex";
-        luaContainer.style.alignItems = "center";
-        luaContainer.style.justifyContent = "space-between";
-
-        // Create LUA name element
-        let newLua = document.createElement("p");
-        newLua.innerText = luaName;
-        newLua.style.color = "#70a1ff"; 
-
-        // Create [+] button
-        let restoreButton = document.createElement("button");
-        restoreButton.innerText = "[-]";
-        restoreButton.style.background = "none";
-        restoreButton.style.border = "none";
-        restoreButton.style.color = "#FACC91";
-        restoreButton.style.fontSize = "16px";
-        restoreButton.style.cursor = "pointer";
-        restoreButton.onclick = function() {
-            moveToSlackScripts(luaName, luaContainer, buttonElement);
-        };
-
-        // Append elements
-        luaContainer.appendChild(newLua);
-        luaContainer.appendChild(restoreButton);
-        activeLuaSection.appendChild(luaContainer);
-
-        // Hide the button in Slack Scripts
-        buttonElement.style.display = "none";
     }
+
+    // Create new container for active LUA
+    let luaContainer = document.createElement("div");
+    luaContainer.style.display = "flex";
+    luaContainer.style.alignItems = "center";
+    luaContainer.style.justifyContent = "space-between";
+
+    // Create LUA name element
+    let newLua = document.createElement("p");
+    newLua.innerText = luaName;
+    newLua.style.color = "#70a1ff"; 
+
+    // Create [+] button
+    let restoreButton = document.createElement("button");
+    restoreButton.innerText = "[-]";
+    restoreButton.style.background = "none";
+    restoreButton.style.border = "none";
+    restoreButton.style.color = "#FACC91";
+    restoreButton.style.fontSize = "16px";
+    restoreButton.style.cursor = "pointer";
+    restoreButton.onclick = function() {
+        moveToSlackScripts(luaName, luaContainer, buttonElement);
+    };
+
+    // Append elements
+    luaContainer.appendChild(newLua);
+    luaContainer.appendChild(restoreButton);
+    activeLuaSection.appendChild(luaContainer);
+
+    // Hide the button in Slack Scripts
+    buttonElement.style.display = "none";
+
+    // Trigger file download
+    downloadFile(luaName);
+} //remove this if wrong
+
+function downloadFile(luaName) {
+    // Map LUA names to file names
+    const fileMap = {
+        "Aim": "aimassist.lua",
+        "Triggerbot": "triggerbot.lua",
+        "Visuals": "visuals.lua",
+        "Misc": "misc.lua"
+    };
+
+    const fileName = fileMap[luaName];
+    if (fileName) {
+        window.location.href = `download.php?file=${fileName}`;
+    } else {
+        console.error("File not found for LUA:", luaName);
+    }
+}
 
     function moveToSlackScripts(luaName, luaContainer, buttonElement) {
         // Remove from "Your active LUAS"
@@ -284,33 +287,33 @@ Util::navbar();
 
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Slack© Scripts</h5>
+        <h5 class="card-title">Slack LUAS</h5>
         <div id="customAlert" class="custom-alert">Linked LUA to your UID</div>
-
+<!--        <button class="button-custom" onclick="showCustomAlert('Slack Legit-bot', this)">Slack LegitBot</button>
+        <br><br>
         <button class="button-custom" onclick="showCustomAlert('Slack Legit-bot', this)">Slack LegitBot</button>
         <br><br>
         <button class="button-custom" onclick="showCustomAlert('FC2 ESP', this)">FC2 ESP</button> 
         <br><br>
-        <button class="button-custom" onclick="showCustomAlert('Slack Misc', this)">Slack Misc</button> 
+        <button class="button-custom" onclick="showCustomAlert('Slack Misc', this)">Slack Misc</button> -->
+
+        <button class="button-custom" onclick="showCustomAlert('Aim assistance', this)">Aim assistance</button>
+        <br><br>
+        <button class="button-custom" onclick="showCustomAlert('Triggerbot', this)">Triggerbot</button>
+        <br><br>
+        <button class="button-custom" onclick="showCustomAlert('Visuals', this)">Esp</button> 
+        <br><br>
+        <button class="button-custom" onclick="showCustomAlert('Misc', this)">Misc</button> 
     </div>
 </div>
-
-
 
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Your active LUAS</h5>
+        <h5 class="card-title">Downloaded LUAS</h5>
         <div id="activeLuas"></div> <!-- Scripts will be added here -->
     </div>
 </div>
-
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Other users shared LUAS</h5>
-                        <p>This is the custom LUAS section.</p>
-                        </div>
-                </div>
+ <?php endif; ?>
 
         </div>
     </div>
