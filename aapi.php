@@ -48,6 +48,6 @@ if (empty($username) || empty($password) || empty($hwid) || empty($key)) {
     }
 }
 
-// Optionally, log the response for debugging purposes (especially in production)
+// Optionally, log the responses for debuggin' purposes
 // file_put_contents('api_debug_log.txt', json_encode($response) . "\n", FILE_APPEND);
 ?>
