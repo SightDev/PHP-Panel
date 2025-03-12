@@ -1,4 +1,5 @@
-## STILL A W.I.P, Kind of a mess as of now.
+## STILL A W.I.P
+###ignore the messy code please :D
 # Enhanced PHP Panel with Advanced Loader Management
 
 Contributions welcome! 💻 Feel free to submit pull requests.
